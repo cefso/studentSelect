@@ -2,12 +2,16 @@ package com.scss.scss.service
 
 import com.scss.scss.domain.admin
 
-interface adminService{
-    fun insertAdmin(Admin:admin):admin
+interface adminService {
+    //    增
+    fun insertAdmin(Admin: admin): admin
 
-    fun delAdmin(id:Long):Unit
+    //    删除
+    fun delAdmin(id: Long): Unit
 
-    fun updateAdmin(Admin: admin):admin
+    //    改
+    fun updateAdmin(Admin: admin): admin
 
-    fun findAdmin():List<admin>
+    //    查
+    fun findAdmin(): List<admin>
 }

@@ -2,12 +2,16 @@ package com.scss.scss.service
 
 import com.scss.scss.domain.sp
 
-interface spService{
-    fun insertSp(Sp:sp):sp
+interface spService {
+    //    增
+    fun insertSp(Sp: sp): sp
 
-    fun delSp(id:Long):Unit
+    //    删除
+    fun delSp(id: Long): Unit
 
-    fun updateSp(Sp: sp):sp
+    //    改
+    fun updateSp(Sp: sp): sp
 
-    fun findSp():List<sp>
+    //    查
+    fun findSp(): List<sp>
 }

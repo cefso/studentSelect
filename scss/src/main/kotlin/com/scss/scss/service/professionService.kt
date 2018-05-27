@@ -2,12 +2,16 @@ package com.scss.scss.service
 
 import com.scss.scss.domain.profession
 
-interface professionService{
-    fun insertProfession(Profession:profession):profession
+interface professionService {
+    //    增
+    fun insertProfession(Profession: profession): profession
 
-    fun delProfession(id:Long):Unit
+    //    删除
+    fun delProfession(id: Long): Unit
 
-    fun updateProfession(Profession: profession):profession
+    //    改
+    fun updateProfession(Profession: profession): profession
 
-    fun findProfession():List<profession>
+    //    查
+    fun findProfession(): List<profession>
 }

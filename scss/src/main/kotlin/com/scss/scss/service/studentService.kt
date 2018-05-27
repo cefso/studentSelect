@@ -2,12 +2,16 @@ package com.scss.scss.service
 
 import com.scss.scss.domain.student
 
-interface studentService{
-    fun insertStudent(Student:student):student
+interface studentService {
+    //    增
+    fun insertStudent(Student: student): student
 
-    fun delStudent(id:Long):Unit
+    //    删除
+    fun delStudent(id: Long): Unit
 
-    fun updateStudent(Student: student):student
+    //    改
+    fun updateStudent(Student: student): student
 
-    fun findStudent():List<student>
+    //    查
+    fun findStudent(): List<student>
 }

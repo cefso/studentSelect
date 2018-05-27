@@ -2,12 +2,16 @@ package com.scss.scss.service
 
 import com.scss.scss.domain.tc
 
-interface tcService{
-    fun insertTc(Tc:tc):tc
+interface tcService {
+    //    增
+    fun insertTc(Tc: tc): tc
 
-    fun delTc(id:Long):Unit
+    //    删除
+    fun delTc(id: Long): Unit
 
-    fun updateTc(Tc: tc):tc
+    //    改
+    fun updateTc(Tc: tc): tc
 
-    fun findTc():List<tc>
+    //    查
+    fun findTc(): List<tc>
 }
