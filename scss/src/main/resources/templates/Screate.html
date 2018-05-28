@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/student/{action}(action=${action})}" method="POST">
+    姓名：<input type="text" id="student_name" name="sName" th:value="${student.sName}"/><br/>
+    学号：<input type="text" id="student_number" name="sNumber" th:value="${student.sNumber}"/><br/>
+    性别：<input type="text" id="student_sex" name="sSex" th:value="${student.sSex}"/><br/>
+    年龄：<input type="text" id="user_age" name="sAge" th:value="${student.sAge}"/><br/>
+    专业：<input type="text" id="student_pro" name="sProfession" th:value="${student.sProfession}"/><br/>
+    电话：<input type="text" id="student_tel" name="sTelephone" th:value="${student.sTelephone}"/><br/>
+    密码：<input type="text" id="student_passward" name="sPasswd" th:value="${student.sPasswd}"/><br/>
+    <input class="btn btn-primary" type="submit" value="提交"/><br/>
+</form>
+</body>
+</html>

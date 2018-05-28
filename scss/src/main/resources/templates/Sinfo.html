@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table class="table table-hover table-condensed">
+    <div class="contentDiv">
+        <legend>
+            <strong>学生信息</strong>
+        </legend>
+        <thead>
+        <tr>
+            <td align="center">姓名</td>
+            <td align="center">学号</td>
+            <td align="center">性别</td>
+            <td align="center">年龄</td>
+            <td align="center">专业</td>
+            <td align="center">电话</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student:${student}">
+            <td align="center" th:text="${student.sName}"></td>
+            <td align="center" th:text="${student.sNumber}"></td>
+            <td align="center" th:text="${student.sSex}"></td>
+            <td align="center" th:text="${student.sAge}"></td>
+            <td align="center" th:text="${student.sProfession}"></td>
+            <td align="center" th:text="${student.sTelephone}"></td>
+        </tr>
+        </tbody>
+    </div>
+</table>
+</body>
+</html>

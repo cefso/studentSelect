@@ -19,6 +19,7 @@ class studentController {
     @RequestMapping("/student/create", method = arrayOf(RequestMethod.POST))
     fun insertStudent(@ModelAttribute Student: student): String {
         StudentService.insertStudent(Student)
+        println(Student)
         return "redirect:/login"
     }
 
@@ -31,6 +32,7 @@ class studentController {
         return "Screate"
     }
 
+
     //    登录视图
     @RequestMapping("/login", method = arrayOf(RequestMethod.GET))
     fun SloginForm(map: ModelMap): String {
@@ -39,20 +41,25 @@ class studentController {
         map.addAttribute("action", "111")
         return "Slogin"
     }
-//登录
+
+
+//   登录
     @RequestMapping("/login",method = arrayOf(RequestMethod.POST))
     fun Slogin(@ModelAttribute Student: student,map: ModelMap,session: HttpSession):String{
 //    创建常量用于储存学号
         val S_number:String
 //    将登陆的时候输入的学号储存到S_number
+    println("111")
         S_number=Student.sNumber!!
+    println(Student.sNumber)
+    println("111")
 //    通过学号从数据库中查询对应学生信息并且储存到getStudent中
         val getStudent:student = StudentService.findBysNumber(S_number)
 //    将查询到的密码与输入的密码对比
         if (getStudent.sPasswd == Student.sPasswd){
             map.addAttribute("student",StudentService.findBysNumber(S_number))
 //            在session中储存登录信息
-            session.setAttribute("Slogin",S_number)
+            session.setAttribute("login",S_number)
 //            登录成功返回信息页面
             return "Sinfo"
         }else{
