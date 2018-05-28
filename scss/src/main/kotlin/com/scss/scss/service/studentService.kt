@@ -14,4 +14,8 @@ interface studentService {
 
     //    查
     fun findStudent(): List<student>
+
+
+    //    学号查找
+    fun findBysNumber(S_number:String):student
 }

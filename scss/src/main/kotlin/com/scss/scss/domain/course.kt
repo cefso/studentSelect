@@ -1,12 +1,17 @@
 package com.scss.scss.domain
 
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 data class course(
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long? = null,
-        var c_number: String? = null,
-        var c_name: String? = null,
-        var c_time: String? = null,
-        var c_score: String? = null
+        var cNumber: String? = null,
+        var cName: String? = null,
+        var cTime: String? = null,
+        var cScore: String? = null
 )

@@ -1,11 +1,16 @@
 package com.scss.scss.domain
 
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 data class admin(
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long? = null,
-        var a_number: String? = null,
-        var a_name: String? = null,
-        var a_passwd: String? = null
+        var aNumber: String? = null,
+        var aName: String? = null,
+        var aPasswd: String? = null
 )

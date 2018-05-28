@@ -29,4 +29,9 @@ class studentServiceImpl : studentService {
     override fun findStudent(): List<student> {
         return StudentRepo.findAll()
     }
+
+
+    override fun findBysNumber(S_number: String): student {
+        return StudentRepo.findBysNumber(S_number)
+    }
 }

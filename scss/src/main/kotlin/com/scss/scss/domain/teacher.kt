@@ -1,14 +1,19 @@
 package com.scss.scss.domain
 
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 data class teacher(
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long? = null,
-        var t_number: String? = null,
-        var t_name: String? = null,
-        var t_sex: String? = null,
-        var t_telephone: String? = null,
-        var t_email: String? = null,
-        var t_passwd: String? = null
+        var tNumber: String? = null,
+        var tName: String? = null,
+        var tSex: String? = null,
+        var Telephone: String? = null,
+        var tEmail: String? = null,
+        var tPasswd: String? = null
 )

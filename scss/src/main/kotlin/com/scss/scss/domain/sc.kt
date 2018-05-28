@@ -1,11 +1,16 @@
 package com.scss.scss.domain
 
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 data class sc(
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long? = null,
-        var s_number: String? = null,
-        var c_number: String? = null,
-        var c_grade: String? = null
+        var sNumber: String? = null,
+        var cNumber: String? = null,
+        var cGrade: String? = null
 )
