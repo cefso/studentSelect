@@ -10,6 +10,7 @@ data class sc(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long? = null,
+
         var sNumber: String? = null,
         var cNumber: String? = null,
         var cGrade: String? = null

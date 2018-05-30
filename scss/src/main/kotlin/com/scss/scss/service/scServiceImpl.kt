@@ -29,4 +29,9 @@ class scServiceImpl : scService {
     override fun findSc(): List<sc> {
         return ScRepo.findAll()
     }
+
+    //    根据学号查找
+    override fun findBysNumber(S_number: String): sc {
+        return ScRepo.findBysNumber(S_number)
+    }
 }
