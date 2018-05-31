@@ -1,6 +1,10 @@
 package com.scss.scss.web
 
+import com.scss.scss.domain.profession
+import com.scss.scss.domain.sp
 import com.scss.scss.domain.student
+import com.scss.scss.service.professionService
+import com.scss.scss.service.spService
 import com.scss.scss.service.studentService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -14,12 +18,29 @@ import javax.servlet.http.HttpSession
 class studentController {
     @Autowired
     lateinit var StudentService: studentService
+    @Autowired
+    lateinit var ProfessionService:professionService
+    @Autowired
+    lateinit var SpService: spService
 
     //    注册
     @RequestMapping("/student/create", method = arrayOf(RequestMethod.POST))
-    fun insertStudent(@ModelAttribute Student: student): String {
+    fun insertStudent(@ModelAttribute Student: student,Sp:sp): String {
+//        将学生信息插入学生表
         StudentService.insertStudent(Student)
-        println(Student)
+//        获取专业名
+        var pName:String=Student.sProfession  as String
+        println(pName)
+//        查询专业号
+        var pNumber:String=ProfessionService.findBypName(pName).pNumber as String
+        println(pNumber)
+//        将学号和专业对应信息写入Sp对象
+        Sp.pNumber=pNumber
+        println(Sp.pNumber)
+        Sp.sNumber=Student.sNumber
+        println(Sp.sNumber)
+//        讲对应数据写入学生专业表
+        SpService.insertSp(Sp)
         return "redirect:/login"
     }
 
@@ -66,7 +87,7 @@ class studentController {
 //    return "redirect:/Slogin"
     }
 
-//    信息视图
+    //    信息视图
     @RequestMapping("student/info", method = arrayOf(RequestMethod.GET))
     fun Ss(@ModelAttribute Student: student, map: ModelMap, session: HttpSession): String {
         var Student: student
@@ -78,32 +99,25 @@ class studentController {
         return "Sinfo"
     }
 
-//    修改个人信息
-    @RequestMapping("student/update",method = arrayOf(RequestMethod.GET))
-fun update(@ModelAttribute Student: student,map: ModelMap,session: HttpSession):String{
-        var Student:student
-        var sNumber:String =session.getAttribute("login") as String
+    //    修改个人信息
+    @RequestMapping("student/update", method = arrayOf(RequestMethod.GET))
+    fun update(@ModelAttribute Student: student, map: ModelMap, session: HttpSession): String {
+        var Student: student
+        var sNumber: String = session.getAttribute("login") as String
         Student = StudentService.findBysNumber(sNumber)
-        map.addAttribute("student",Student)
-        return  "Supdate"
+        map.addAttribute("student", Student)
+        return "Supdate"
     }
 
-//    提交个人信息修改
-    @RequestMapping("/student/update",method = arrayOf(RequestMethod.POST))
-fun updateStudent(@ModelAttribute Student2: student,session: HttpSession):String{
-    var Student:student
-    var sNumber:String =session.getAttribute("login") as String
-    Student = StudentService.findBysNumber(sNumber)
-    var id: Long? =Student.id
-    StudentService.delStudent(id!!)
-    StudentService.insertStudent(Student2)
-    return "redirect:/student/info"
-}
-//    @RequestMapping("/student/create", method = arrayOf(RequestMethod.GET))
-//    fun insertStudentForm(map: ModelMap): String {
-//        var Student = student()
-//        map.addAttribute("student", Student)
-//        map.addAttribute("action", "create")
-//        return "Screate"
-//    }
+    //    提交个人信息修改
+    @RequestMapping("/student/update", method = arrayOf(RequestMethod.POST))
+    fun updateStudent(@ModelAttribute Student2: student, session: HttpSession): String {
+        var Student: student
+        var sNumber: String = session.getAttribute("login") as String
+        Student = StudentService.findBysNumber(sNumber)
+        var id: Long? = Student.id
+        StudentService.delStudent(id!!)
+        StudentService.insertStudent(Student2)
+        return "redirect:/student/info"
+    }
 }

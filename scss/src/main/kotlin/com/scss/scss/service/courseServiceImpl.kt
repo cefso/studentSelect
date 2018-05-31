@@ -30,4 +30,8 @@ class courseServiceImpl : courseService {
     override fun findCourse(): List<course> {
         return CourseRepo.findAll()
     }
+
+    override fun findBycNumber(cNumber: String): course {
+        return CourseRepo.findBycNumber(cNumber)
+    }
 }

@@ -14,4 +14,7 @@ interface spService {
 
     //    查
     fun findSp(): List<sp>
+
+//    通过学号查找专业id
+    fun findBysNumber(S_number:String):sp
 }

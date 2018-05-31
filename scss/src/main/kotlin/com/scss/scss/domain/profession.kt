@@ -11,5 +11,6 @@ data class profession(
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long? = null,
         var pNumber: String? = null,
-        var pName: String? = null
+        var pName: String? = null,
+        var rNumber: String? = null
 )

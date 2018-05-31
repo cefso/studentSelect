@@ -30,4 +30,12 @@ class professionServiceImpl : professionService {
     override fun findProfession(): List<profession> {
         return ProfessionRepo.findAll()
     }
+
+    override fun findBypName(pName: String): profession {
+        return ProfessionRepo.findBypName(pName)
+    }
+
+    override fun findBypNumber(pNumber: String): profession {
+        return ProfessionRepo.findBypNumber(pNumber)
+    }
 }

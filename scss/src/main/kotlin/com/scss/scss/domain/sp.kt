@@ -11,7 +11,6 @@ data class sp(
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long? = null,
         var sNumber: String? = null,
-        var pNumber: String? = null,
-        var rNumber: String? = null
+        var pNumber: String? = null
 
 )

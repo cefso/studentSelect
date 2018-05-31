@@ -14,4 +14,9 @@ interface professionService {
 
     //    查
     fun findProfession(): List<profession>
+
+//    通过专业名称查询
+    fun findBypName(pName:String):profession
+
+    fun findBypNumber(pNumber:String):profession
 }

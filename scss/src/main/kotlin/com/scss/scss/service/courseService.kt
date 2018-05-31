@@ -14,4 +14,7 @@ interface courseService {
 
     //    查
     fun findCourse(): List<course>
+
+//    通过课程号查询
+    fun findBycNumber(cNumber:String):course
 }

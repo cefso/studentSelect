@@ -29,4 +29,8 @@ class spServiceImpl : spService {
     override fun findSp(): List<sp> {
         return SpRepo.findAll()
     }
+
+    override fun findBysNumber(S_number: String): sp {
+        return SpRepo.findBysNumber(S_number)
+    }
 }
