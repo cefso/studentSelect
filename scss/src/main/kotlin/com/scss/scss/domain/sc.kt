@@ -4,7 +4,7 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-
+//选课表
 @Entity
 data class sc(
         @Id

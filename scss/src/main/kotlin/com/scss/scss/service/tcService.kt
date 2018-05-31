@@ -1,7 +1,7 @@
 package com.scss.scss.service
 
 import com.scss.scss.domain.tc
-
+//授课服务
 interface tcService {
     //    增
     fun insertTc(Tc: tc): tc

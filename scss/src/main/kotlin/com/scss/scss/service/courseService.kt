@@ -1,7 +1,7 @@
 package com.scss.scss.service
 
 import com.scss.scss.domain.course
-
+//课程服务
 interface courseService {
     //    增
     fun insertCourse(Course: course): course

@@ -2,6 +2,7 @@ package com.scss.scss.service
 
 import com.scss.scss.domain.admin
 
+//管理员服务
 interface adminService {
     //    增
     fun insertAdmin(Admin: admin): admin

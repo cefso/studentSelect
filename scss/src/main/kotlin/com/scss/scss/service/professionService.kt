@@ -1,7 +1,7 @@
 package com.scss.scss.service
 
 import com.scss.scss.domain.profession
-
+//专业服务
 interface professionService {
     //    增
     fun insertProfession(Profession: profession): profession

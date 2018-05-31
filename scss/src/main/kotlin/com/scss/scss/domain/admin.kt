@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
+//管理员表
 @Entity
 data class admin(
         @Id

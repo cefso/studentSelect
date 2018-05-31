@@ -38,7 +38,7 @@ class studentController {
     fun SloginForm(map: ModelMap): String {
         var Student = student()
         map.addAttribute("student", Student)
-        map.addAttribute("action", "111")
+//        map.addAttribute("action", "111")
         return "Slogin"
     }
 
@@ -49,10 +49,7 @@ class studentController {
 //    创建常量用于储存学号
         val S_number: String
 //    将登陆的时候输入的学号储存到S_number
-//    println("111")
         S_number = Student.sNumber!!
-//    println(Student.sNumber)
-//    println("111")
 //    通过学号从数据库中查询对应学生信息并且储存到getStudent中
         val getStudent: student = StudentService.findBysNumber(S_number)
 //    将查询到的密码与输入的密码对比
@@ -68,4 +65,45 @@ class studentController {
         }
 //    return "redirect:/Slogin"
     }
+
+//    信息视图
+    @RequestMapping("student/info", method = arrayOf(RequestMethod.GET))
+    fun Ss(@ModelAttribute Student: student, map: ModelMap, session: HttpSession): String {
+        var Student: student
+//    从session中获得登录信息
+        var sNumber: String = session.getAttribute("login") as String
+        Student = StudentService.findBysNumber(sNumber)
+//    将登陆信息展示到页面上
+        map.addAttribute("student", Student)
+        return "Sinfo"
+    }
+
+//    修改个人信息
+    @RequestMapping("student/update",method = arrayOf(RequestMethod.GET))
+fun update(@ModelAttribute Student: student,map: ModelMap,session: HttpSession):String{
+        var Student:student
+        var sNumber:String =session.getAttribute("login") as String
+        Student = StudentService.findBysNumber(sNumber)
+        map.addAttribute("student",Student)
+        return  "Supdate"
+    }
+
+//    提交个人信息修改
+    @RequestMapping("/student/update",method = arrayOf(RequestMethod.POST))
+fun updateStudent(@ModelAttribute Student2: student,session: HttpSession):String{
+    var Student:student
+    var sNumber:String =session.getAttribute("login") as String
+    Student = StudentService.findBysNumber(sNumber)
+    var id: Long? =Student.id
+    StudentService.delStudent(id!!)
+    StudentService.insertStudent(Student2)
+    return "redirect:/student/info"
+}
+//    @RequestMapping("/student/create", method = arrayOf(RequestMethod.GET))
+//    fun insertStudentForm(map: ModelMap): String {
+//        var Student = student()
+//        map.addAttribute("student", Student)
+//        map.addAttribute("action", "create")
+//        return "Screate"
+//    }
 }

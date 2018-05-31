@@ -1,7 +1,7 @@
 package com.scss.scss.service
 
 import com.scss.scss.domain.sp
-
+//学生专业服务
 interface spService {
     //    增
     fun insertSp(Sp: sp): sp

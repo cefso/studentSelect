@@ -41,6 +41,6 @@ class scController {
         }else{
             ScService.insertSc(Sc)
         }
-        return "redirect:/login"
+        return "redirect:/student/info"
     }
 }

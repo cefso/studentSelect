@@ -1,7 +1,7 @@
 package com.scss.scss.service
 
 import com.scss.scss.domain.sc
-
+//选课服务
 interface scService {
     //    增
     fun insertSc(Sc: sc): sc
