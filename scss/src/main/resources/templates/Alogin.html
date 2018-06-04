@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/alogin}" method="post">
+    账号：<input type="text" id="anumber" name="aNumber" th:value="${admin.aNumber}"/><br/>
+    密码：<input type="password" id="apassword" name="aPasswd" th:value="${admin.aPasswd}"/><br/>
+    <input class="btn btn-primary" type="submit" value="提交"/><br/>
+</form>
+</body>
+</html>

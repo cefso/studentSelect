@@ -14,4 +14,6 @@ interface teacherService {
 
     //    查
     fun findTeacher(): List<teacher>
+
+    fun findBytNumber(T_number:String):teacher
 }

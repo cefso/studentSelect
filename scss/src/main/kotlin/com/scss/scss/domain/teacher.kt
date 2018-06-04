@@ -13,7 +13,7 @@ data class teacher(
         var tNumber: String? = null,
         var tName: String? = null,
         var tSex: String? = null,
-        var Telephone: String? = null,
+        var tTelephone: String? = null,
         var tEmail: String? = null,
         var tPasswd: String? = null
 )

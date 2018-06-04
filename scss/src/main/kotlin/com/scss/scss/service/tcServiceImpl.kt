@@ -29,4 +29,8 @@ class tcServiceImpl : tcService {
     override fun findTc(): List<tc> {
         return TcRepo.findAll()
     }
+
+    override fun findBytNumber(T_number: String): tc {
+        return TcRepo.findBytNumber(T_number)
+    }
 }

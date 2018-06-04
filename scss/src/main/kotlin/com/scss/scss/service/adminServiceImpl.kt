@@ -30,4 +30,8 @@ class adminServiceImpl : adminService {
     override fun findAdmin(): List<admin> {
         return AdminReop.findAll()
     }
+
+    override fun findByaNumber(aNumber: String): admin {
+        return AdminReop.findByaNumber(aNumber)
+    }
 }

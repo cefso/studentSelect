@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<table >
+    <div >
+        <legend>
+            <strong>课程列表</strong>
+        </legend>
+        <thead>
+        <tr>
+            <td align="center" >课程号</td>
+            <td align="center" >课程名</td>
+            <td align="center" >学时</td>
+            <td align="center" >学分</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center"  th:text="${course.cNumber}"></td>
+            <td align="center"  th:text="${course.cName}"></td>
+            <td  align="center" th:text="${course.cTime}"></td>
+            <td  align="center" th:text="${course.cScore}"></td>
+        </tr>
+        </tbody>
+    </div>
+</table>
+</body>
+</html>

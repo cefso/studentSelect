@@ -15,4 +15,6 @@ interface adminService {
 
     //    查
     fun findAdmin(): List<admin>
+
+    fun findByaNumber(aNumber:String):admin
 }

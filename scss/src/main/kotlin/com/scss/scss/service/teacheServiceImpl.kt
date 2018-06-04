@@ -29,4 +29,8 @@ class teacheServiceImpl : teacherService {
     override fun findTeacher(): List<teacher> {
         return TeacherRepo.findAll()
     }
+
+    override fun findBytNumber(T_number: String): teacher {
+        return TeacherRepo.findBytNumber(T_number)
+    }
 }

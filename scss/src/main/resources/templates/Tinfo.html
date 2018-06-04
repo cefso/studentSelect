@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table class="table table-hover table-condensed">
+    <div class="contentDiv">
+        <legend>
+            <strong>教师信息</strong>
+        </legend>
+        <thead>
+        <tr>
+            <td align="center">姓名</td>
+            <td align="center">教工号</td>
+            <td align="center">性别</td>
+            <td align="center">电话</td>
+            <td align="center">Email</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher:${teacher}">
+            <td align="center" th:text="${teacher.tName}"></td>
+            <td align="center" th:text="${teacher.tNumber}"></td>
+            <td align="center" th:text="${teacher.tSex}"></td>
+            <td align="center" th:text="${teacher.tTelephone}"></td>
+            <td align="center" th:text="${teacher.tEmail}"></td>
+        </tr>
+        </tbody>
+    </div>
+</table>
+<a th:href="@{/teacher/course}" role="button">查询课程安排</a>
+<a th:href="@{/teacher/update}" role="button">修改个人信息</a>
+</body>
+</html>

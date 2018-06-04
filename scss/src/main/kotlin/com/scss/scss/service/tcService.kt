@@ -14,4 +14,7 @@ interface tcService {
 
     //    查
     fun findTc(): List<tc>
+
+//    通过教师号查找
+    fun findBytNumber(T_number:String):tc
 }
