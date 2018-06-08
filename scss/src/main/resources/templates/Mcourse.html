@@ -16,7 +16,8 @@
             <td align="center">课程名</td>
             <td align="center">学时</td>
             <td align="center">学分</td>
-            <td align="center">选择</td>
+            <td align="center">修改</td>
+            <td align="center">删除</td>
         </tr>
         </thead>
         <tbody>
@@ -25,13 +26,18 @@
             <td align="center" th:text="${course.cName}"></td>
             <td align="center" th:text="${course.cTime}"></td>
             <td align="center" th:text="${course.cScore}"></td>
-            <td align="center"><a th:href="@{/student/course/select/{cNumber}(cNumber=${course.cNumber})}">
-                <button type="button">选择</button>
+            <td align="center"><a th:href="@{/admin/course/update/{cNumber}(cNumber=${course.cNumber})}">
+                <button type="button">修改</button>
+            </a></td>
+            <td align="center"><a th:href="@{/admin/course/del/{cNumber}(cNumber=${course.cNumber})}">
+                <button type="button">删除</button>
             </a></td>
         </tr>
         </tbody>
     </div>
 </table>
-推荐选择课程：<input type="text" id="student_number" name="cName" th:value="${course.cName}"/><br/>
+<td align="center"><a th:href="@{/admin/course/create}">
+    <button type="button">添加</button>
+</a></td>
 </body>
 </html>

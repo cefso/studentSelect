@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <table>
+        <tr>
+            <td align="center">姓名</td>
+            <td align="center">学号</td>
+            <td align="center">性别</td>
+            <td align="center">年龄</td>
+            <td align="center">专业</td>
+            <td align="center">电话</td>
+            <td align="center">成绩管理</td>
+            <td align="center">选课管理</td>
+            <td align="center">信息管理</td>
+            <td align="center">删除</td>
+        </tr>
+        <tr th:each="student:${studentList}" method="POST">
+            <td align="center" th:text="${student.sName}"></td>
+            <td align="center" th:text="${student.sNumber}"></td>
+            <td align="center" th:text="${student.sSex}"></td>
+            <td align="center" th:text="${student.sAge}"></td>
+            <td align="center" th:text="${student.sProfession}"></td>
+            <td align="center" th:text="${student.sTelephone}"></td>
+            <td><a th:href="@{/admin/student/grade/{sNumber}(sNumber=${student.sNumber})}">
+                <button type="button">管理</button>
+            </a></td>
+            <td><a th:href="@{/admin/student/course/{sNumber}(sNumber=${student.sNumber})}">
+                <button type="button">管理</button>
+            </a></td>
+            <td><a th:href="@{/admin/student/update/{sNumber}(sNumber=${student.sNumber})}">
+                <button type="button">管理</button>
+            </a></td>
+            <td align="center"><a th:href="@{/admin/student/del/{sNumber}(sNumber=${student.sNumber})}">
+                <button type="button">删除</button>
+            </a></td>
+        </tr>
+    </table>
+    <a th:href="@{/admin/info}">
+        <button type="button">返回</button>
+    </a>
+
+</form>
+</body>
+</html>

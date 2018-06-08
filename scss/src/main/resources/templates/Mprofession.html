@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <div>
+        <legend>
+            <strong>专业列表</strong>
+        </legend>
+        <thead>
+        <tr>
+            <td align="center">专业号</td>
+            <td align="center">专业名</td>
+            <td align="center">推荐课程</td>
+            <td align="center">查看推荐课程信息</td>
+            <td align="center">信息修改</td>
+            <td align="center">删除</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="profession:${professionList}">
+            <td align="center" th:text="${profession.pNumber}"></td>
+            <td align="center" th:text="${profession.pName}"></td>
+            <td align="center" th:text="${profession.rNumber}"></td>
+            <td align="center"><a th:href="@{/admin/profession/r/{pNumber}(pNumber=${profession.pNumber})}">
+                <button type="button"> 查看</button>
+            </a></td>
+            <td align="center"><a th:href="@{/admin/profession/update/{pNumber}(pNumber=${profession.pNumber})}">
+                <button type="button">修改</button>
+            </a></td>
+            <td align="center"><a th:href="@{/admin/profession/del/{pNumber}(pNumber=${profession.pNumber})}">
+                <button type="button">修改</button>
+            </a></td>
+            <!--<td align="center"><a th:href="@{/admin/course/del/{cNumber}(cNumber=${course.cNumber})}">-->
+                <!--<button type="button">删除</button>-->
+            <!--</a></td>-->
+        </tr>
+        </tbody>
+    </div>
+</table>
+<td align="center"><a th:href="@{/admin/profession/create}">
+    <button type="button">添加</button>
+</a></td>
+</body>
+</html>

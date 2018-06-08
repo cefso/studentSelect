@@ -8,10 +8,16 @@
 <form th:action="@{/login}" method="post">
     学号：<input type="text" id="stnumber" name="sNumber" th:value="${student.sNumber}"/><br/>
     密码：<input type="password" id="stpassword" name="sPasswd" th:value="${student.sPasswd}"/><br/>
-    <input class="btn btn-primary" type="submit" value="提交"/><br/>
-    <a class="btn btn-primary" th:href="@{/student/create}" role="button">创建用户</a>
+    <input type="submit" value="提交"/>
 </form>
-<a class="btn btn-primary" th:href="@{/tlogin}" role="button">教师入口</a>
-<a class="btn btn-primary" th:href="@{/alogin}" role="button">管理员入口</a>
+<a th:href="@{/student/create}">
+    <button>创建用户</button>
+</a><br/>
+<a th:href="@{/tlogin}">
+    <button type="button">教师入口</button>
+</a>
+<a th:href="@{/alogin}">
+    <button type="button">管理员入口</button>
+</a>
 </body>
 </html>

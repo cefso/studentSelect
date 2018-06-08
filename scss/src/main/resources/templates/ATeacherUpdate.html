@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/admin/teacher/{action}(action=${action})}" method="POST">
+    姓名：<input type="text" id="teacher_name" name="tName" th:value="${teacher.tName}"/><br/>
+    教工号：<input type="text" id="teacher_number" name="tNumber" th:value="${teacher.tNumber}"/><br/>
+    性别：<input type="text" id="teacher_sex" name="tSex" th:value="${teacher.tSex}"/><br/>
+    电话：<input type="text" id="teacher_tel" name="tTelephone" th:value="${teacher.tTelephone}"/><br/>
+    email：<input type="text" id="teacher_email" name="tEmail" th:value="${teacher.tEmail}"/><br/>
+    密码：<input type="text" id="teacher_passward" name="tPasswd" th:value="${teacher.tPasswd}"/><br/>
+    <input type="submit" value="提交"/>
+    <a th:href="@{/admin/teacher}">
+        <button type="button">返回</button>
+    </a>
+</form>
+</body>
+</html>

@@ -9,7 +9,10 @@
     教工号：<input type="text" id="tnumber" name="tNumber" th:value="${teacher.tNumber}"/><br/>
     密码：<input type="password" id="tpassword" name="tPasswd" th:value="${teacher.tPasswd}"/><br/>
     <input class="btn btn-primary" type="submit" value="提交"/><br/>
-    <a class="btn btn-primary" th:href="@{/teacher/create}" role="button">创建用户</a>
+    <a th:href="@{/teacher/create}">
+        <button type="button">创建用户</button>
+    </a>
+
 </form>
 </body>
 </html>

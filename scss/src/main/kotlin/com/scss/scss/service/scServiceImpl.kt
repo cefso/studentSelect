@@ -34,4 +34,8 @@ class scServiceImpl : scService {
     override fun findBysNumber(S_number: String): sc {
         return ScRepo.findBysNumber(S_number)
     }
+
+    override fun findBycNumber(C_number: String): List<sc> {
+        return ScRepo.findBycNumber(C_number)
+    }
 }

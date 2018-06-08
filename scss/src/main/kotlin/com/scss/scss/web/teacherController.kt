@@ -33,7 +33,7 @@ class teacherController {
 //        判断密码是否正确
         if (getteacher.tPasswd == Teacher.tPasswd) {
 //            返回个人信息
-            map.addAttribute("teacher",TeacherService.findBytNumber(T_number))
+            map.addAttribute("teacher", TeacherService.findBytNumber(T_number))
 //            添加登录信息到session
             session.setAttribute("Tlogin", T_number)
             return "Tinfo"
@@ -46,9 +46,21 @@ class teacherController {
     //    注册
     @RequestMapping("/teacher/create", method = arrayOf(RequestMethod.POST))
     fun insertTeacher(@ModelAttribute Teacher: teacher): String {
-//    将教师信息插入教师表
-        TeacherService.insertTeacher(Teacher)
-        return "redirect:/tlogin"
+        var error:String="error"
+        try {
+            TeacherService.findBytNumber(Teacher.tNumber as String)
+        }catch (e:Exception){
+            //    将教师信息插入教师表
+            TeacherService.insertTeacher(Teacher)
+            error="succeed"
+        }
+        if (error=="succeed"){
+            return "redirect:/tlogin"
+        }else{
+            return "TCerror"
+        }
+
+
     }
 
     //    进入用户视图
@@ -80,6 +92,18 @@ class teacherController {
         TeacherService.delTeacher(id!!)
         TeacherService.insertTeacher(Teacher2)
         return "redirect:/teacher/info"
+    }
+
+    //    信息视图
+    @RequestMapping("teacher/info", method = arrayOf(RequestMethod.GET))
+    fun Tinfo(@ModelAttribute Teacher: teacher, map: ModelMap, session: HttpSession): String {
+        var Teacher: teacher
+//        从session中获得登录信息
+        var tNumber: String = session.getAttribute("Tlogin") as String
+        Teacher = TeacherService.findBytNumber(tNumber)
+//        将登陆信息展示到页面上
+        map.addAttribute("teacher", Teacher)
+        return "Tinfo"
     }
 
 }

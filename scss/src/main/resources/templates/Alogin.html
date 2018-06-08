@@ -8,7 +8,8 @@
 <form th:action="@{/alogin}" method="post">
     账号：<input type="text" id="anumber" name="aNumber" th:value="${admin.aNumber}"/><br/>
     密码：<input type="password" id="apassword" name="aPasswd" th:value="${admin.aPasswd}"/><br/>
-    <input class="btn btn-primary" type="submit" value="提交"/><br/>
+    <input class="btn btn-primary" type="submit" value="提交"/>
+    <a th:href="@{/login}"><button type="button" >返回</button></a>
 </form>
 </body>
 </html>

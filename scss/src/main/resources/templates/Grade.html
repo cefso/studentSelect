@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<table >
-    <div >
+<table class="table table-hover table-condensed">
+    <div class="contentDiv">
         <legend>
             <strong>学生信息</strong>
         </legend>
@@ -32,31 +32,10 @@
         </tbody>
     </div>
 </table>
-<a th:href="@{/student/course}">
-    <button type="button">选课</button>
-</a>
-<a th:href="@{/student/update}">
-    <button type="button">修改个人信息</button>
-</a>
-<a th:href="@{/student/find/{sNumber}(sNumber=${student.sNumber})}">
-    <button type="button">成绩查询</button>
-</a>
-<table>
-    <legend>
-        <strong>选课信息</strong>
-    </legend>
-    <tr>
-        <td align="center">课程名称</td>
-        <td align="center">课程号</td>
-        <td align="center">学时</td>
-        <td align="center">学分</td>
-    </tr>
-    <tr th:each="course:${course}">
-        <td align="center" th:text="${course.cName}"></td>
-        <td align="center" th:text="${course.cNumber}"></td>
-        <td align="center" th:text="${course.cTime}"></td>
-        <td align="center" th:text="${course.cScore}"></td>
-    </tr>
-</table>
+<form th:action="@{/teacher/{action}(action=${action})}" method="POST">
+    成绩：<input type="text" id="grade" name="cGrade" th:placeholder=${Sc2.cGrade} th:value="${sc.cGrade}"/><br/>
+    <input  type="submit" value="提交"/>
+    <a th:href="@{/teacher/find}"><button type="button">返回</button></a>
+</form>
 </body>
 </html>

@@ -1,11 +1,9 @@
 package com.scss.scss.web
 
-import com.scss.scss.domain.profession
+import com.scss.scss.domain.course
 import com.scss.scss.domain.sp
 import com.scss.scss.domain.student
-import com.scss.scss.service.professionService
-import com.scss.scss.service.spService
-import com.scss.scss.service.studentService
+import com.scss.scss.service.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
@@ -19,34 +17,53 @@ class studentController {
     @Autowired
     lateinit var StudentService: studentService
     @Autowired
-    lateinit var ProfessionService:professionService
+    lateinit var ProfessionService: professionService
     @Autowired
     lateinit var SpService: spService
+    @Autowired
+    lateinit var ScService: scService
+    @Autowired
+    lateinit var CourseService: courseService
 
     //    注册
     @RequestMapping("/student/create", method = arrayOf(RequestMethod.POST))
-    fun insertStudent(@ModelAttribute Student: student,Sp:sp): String {
-//        将学生信息插入学生表
-        StudentService.insertStudent(Student)
+    fun insertStudent(@ModelAttribute Student: student, Sp: sp): String {
+        var error:String="error"
+        try {
+            StudentService.findBysNumber(Student.sNumber as String)
+        }catch (e:Exception){
+            //         将学生信息插入学生表
+            println(Student)
+            StudentService.insertStudent(Student)
 //        获取专业名
-        var pName:String=Student.sProfession  as String
-        println(pName)
+            var pName: String = Student.sProfession as String
+            println(pName)
 //        查询专业号
-        var pNumber:String=ProfessionService.findBypName(pName).pNumber as String
-        println(pNumber)
+            var pNumber: String = ProfessionService.findBypName(pName).pNumber as String
+            println(pNumber)
 //        将学号和专业对应信息写入Sp对象
-        Sp.pNumber=pNumber
-        println(Sp.pNumber)
-        Sp.sNumber=Student.sNumber
-        println(Sp.sNumber)
+            Sp.pNumber = pNumber
+            println(Sp.pNumber)
+            Sp.sNumber = Student.sNumber
+            println(Sp.sNumber)
 //        讲对应数据写入学生专业表
-        SpService.insertSp(Sp)
-        return "redirect:/login"
+            SpService.insertSp(Sp)
+            error="succeed"
+        }
+        println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        println(error)
+        println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        if (error=="succeed"){
+            return "redirect:/login"
+        }else{
+            return "SCerror"
+        }
     }
 
     //    进入用户视图
     @RequestMapping("/student/create", method = arrayOf(RequestMethod.GET))
     fun insertStudentForm(map: ModelMap): String {
+        println("get")
         var Student = student()
         map.addAttribute("student", Student)
         map.addAttribute("action", "create")
@@ -78,6 +95,28 @@ class studentController {
 //            返回个人信息
             map.addAttribute("student", StudentService.findBysNumber(S_number))
 //            在session中储存登录信息
+//            查询选课信息
+            var error: String? = "xxx"
+//            error = null 代表没有选课信息
+            try {
+                ScService.findBysNumber(S_number)
+            } catch (e: Exception) {
+                error = null
+            }
+//            如果有选课信息
+            if (error != null) {
+                var cNumber: String = ScService.findBysNumber(S_number).cNumber!!
+                var Course: course = CourseService.findBycNumber(cNumber)
+                map.addAttribute("course", Course)
+            } else {
+                var Course = course()
+                Course.cName = "没有选课"
+                Course.cNumber = "没有选课"
+                Course.cTime = "没有选课"
+                Course.cScore = "没有选课"
+                println(Course)
+                map.addAttribute("course", Course)
+            }
             session.setAttribute("login", S_number)
 //            登录成功返回信息页面
             return "Sinfo"
@@ -107,5 +146,17 @@ class studentController {
         StudentService.delStudent(id!!)
         StudentService.insertStudent(Student2)
         return "redirect:/student/info"
+    }
+
+    //    信息视图
+    @RequestMapping("student/info", method = arrayOf(RequestMethod.GET))
+    fun Sinfo(@ModelAttribute Student: student, map: ModelMap, session: HttpSession): String {
+        var Student: student
+//    从session中获得登录信息
+        var sNumber: String = session.getAttribute("login") as String
+        Student = StudentService.findBysNumber(sNumber)
+//    将登陆信息展示到页面上
+        map.addAttribute("student", Student)
+        return "Sinfo"
     }
 }

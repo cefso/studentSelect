@@ -17,4 +17,6 @@ interface scService {
 
 //    根据学号查询
     fun findBysNumber(S_number:String):sc
+
+    fun findBycNumber(C_number:String):List<sc>
 }

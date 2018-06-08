@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/admin/profession/{action}(action=${action})}" method="POST">
+    专业名：<input type="text" id="profession_name" name="pName" th:value="${profession.pName}"/><br/>
+    专业号：<input type="text" id="profession_number" name="pNumber" th:value="${profession.pNumber}"/><br/>
+    推荐课程号：<input type="text" id="profession_rnumber" name="rNumber" th:value="${profession.rNumber}"/><br/>
+    <input type="submit" value="提交"/>
+    <a th:href="@{/admin/profession}">
+        <button type="button">返回</button>
+    </a>
+</form>
+</body>
+</html>

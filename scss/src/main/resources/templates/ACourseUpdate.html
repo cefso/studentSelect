@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/admin/course/{action}(action=${action})}" method="POST">
+    姓名：<input type="text" id="course_name" name="cName" th:value="${course.cName}"/><br/>
+    学号：<input type="text" id="course_number" name="cNumber" th:value="${course.cNumber}"/><br/>
+    电话：<input type="text" id="course_time" name="cTime" th:value="${course.cTime}"/><br/>
+    密码：<input type='text' id="course_score" name="cScore" th:value="${course.cScore}"/><br/>
+    <input  type="submit" value="提交"/>
+    <a th:href="@{/admin/course}"><button type="button">返回</button></a>
+</form>
+</body>
+</html>
