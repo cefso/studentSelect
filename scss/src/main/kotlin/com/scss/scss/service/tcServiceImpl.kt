@@ -30,7 +30,13 @@ class tcServiceImpl : tcService {
         return TcRepo.findAll()
     }
 
+//    根据教师号查找
     override fun findBytNumber(T_number: String): tc {
         return TcRepo.findBytNumber(T_number)
+    }
+
+    //    根据课程号查找
+    override fun findBycNumber(C_number: String): List<tc> {
+        return  TcRepo.findBycNumber(C_number)
     }
 }

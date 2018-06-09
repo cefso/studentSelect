@@ -5,4 +5,5 @@ import org.springframework.data.repository.query.Param
 
 interface tcRepo:JpaRepository<tc,Long>{
     fun findBytNumber(@Param("tnumber")tNumber:String):tc
+    fun findBycNumber(@Param("cnumber")cNumber:String):List<tc>
 }

@@ -1,6 +1,7 @@
 package com.scss.scss.service
 
 import com.scss.scss.domain.tc
+
 //授课服务
 interface tcService {
     //    增
@@ -15,6 +16,9 @@ interface tcService {
     //    查
     fun findTc(): List<tc>
 
-//    通过教师号查找
-    fun findBytNumber(T_number:String):tc
+    //    通过教师号查找
+    fun findBytNumber(T_number: String): tc
+
+    //    根据课程号查询
+    fun findBycNumber(C_number: String): List<tc>
 }

@@ -32,14 +32,27 @@ class tcController {
     fun findTC(map: ModelMap, session: HttpSession): String {
 //        从session中获取教师号
         var T_number: String = session.getAttribute("Tlogin") as String
+//        定义错误标记
+        var error: String = "succeed"
+        try {
 //        在tc表中通过教师号查询对应信息
-        var Tc: tc = TcService.findBytNumber(T_number)
+            var Tc: tc = TcService.findBytNumber(T_number)
+        } catch (e: Exception) {
+//            没有安排选课
+            error = "error"
+        }
+        if (error == "succeed") {
+////        在tc表中通过教师号查询对应信息
+            var Tc: tc = TcService.findBytNumber(T_number)
 //        查询教师所授课程课程信息
-        var Course: course = CourseService.findBycNumber(Tc.cNumber!!)
+            var Course: course = CourseService.findBycNumber(Tc.cNumber!!)
 //        map.addAttribute("tc",Tc)
 //        返回课程信息到页面
-        map.addAttribute("course", Course)
-        return "Tcourse"
+            map.addAttribute("course", Course)
+            return "Tcourse"
+        } else {
+            return "TCourseError"
+        }
     }
 
     @RequestMapping("teacher/find", method = arrayOf(RequestMethod.GET))

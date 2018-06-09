@@ -27,6 +27,8 @@ class adminController {
     lateinit var TcService: tcService
     @Autowired
     lateinit var ProfessionService: professionService
+    @Autowired
+    lateinit var SpService:spService
 
     //    登录视图
     @RequestMapping("/alogin", method = arrayOf(RequestMethod.GET))
@@ -41,20 +43,32 @@ class adminController {
     //    登录
     @RequestMapping("/alogin", method = arrayOf(RequestMethod.POST))
     fun Alogin(@ModelAttribute Admin: admin, map: ModelMap, session: HttpSession): String {
-//        获取输入的学号
+//        获取输入的账号
         val A_number: String = Admin.aNumber!!
-//        查询对应学号在数据库中储存的信息
-        val getAdmin: admin = AdminService.findByaNumber(A_number)
+        var error:String="succeed"
+        try {
+            //        查询对应账号在数据库中储存的信息
+            val getAdmin: admin = AdminService.findByaNumber(A_number)
+        }catch (e:Exception){
+//            未查询到对应信息
+            error="error"
+        }
+        if (error=="succeed"){
+            //        查询对应账号在数据库中储存的信息
+            val getAdmin: admin = AdminService.findByaNumber(A_number)
 //        判断密码是否正确
-        if (getAdmin.aPasswd == Admin.aPasswd) {
+            if (getAdmin.aPasswd == Admin.aPasswd) {
 //            添加登录信息到session
-            session.setAttribute("Alogin", A_number)
+                session.setAttribute("Alogin", A_number)
 //            println("登录成功")
-            map.addAttribute("admin", getAdmin)
-            return "Ainfo"
-        } else {
+                map.addAttribute("admin", getAdmin)
+                return "Ainfo"
+            } else {
 //            println("登录失败")
-            return "redirect:/alogin"
+                return "ALerror"
+            }
+        }else{
+            return "ANotFind"
         }
     }
 
@@ -155,6 +169,8 @@ class adminController {
         session.setAttribute("A_sNumber", sNumber)
         map.addAttribute("student", Student)
         map.addAttribute("action", "update")
+        var ProfessionList=ProfessionService.findProfession()
+        map.addAttribute("professionList",ProfessionList)
         println("supdate")
         return "AStudentUpdate"
     }
@@ -173,8 +189,31 @@ class adminController {
     //    删除
     @RequestMapping("admin/student/del/{sNumber}", method = arrayOf(RequestMethod.GET))
     fun delStudent(@PathVariable sNumber: String): String {
+//        删除学生信息
         var Id = StudentService.findBysNumber(sNumber).id
         StudentService.delStudent(Id!!)
+        var error:String="succeed"
+        try {
+            var Id2=ScService.findBysNumber(sNumber).id
+        }catch (e:Exception){
+            error="error"
+        }
+        if (error=="succeed"){
+            //        删除学生选课信息
+            var Id2=ScService.findBysNumber(sNumber).id
+            ScService.delSc(Id2!!)
+        }
+        var error2:String="succeed"
+        try {
+            var Id3=SpService.findBysNumber(sNumber).id
+        }catch (e:Exception){
+            error2="error"
+        }
+        if (error2=="succeed"){
+            //        删除学生专业信息
+            var Id3=SpService.findBysNumber(sNumber).id
+            SpService.delSp(Id3!!)
+        }
         return "redirect:/admin/student"
     }
 
@@ -259,6 +298,17 @@ class adminController {
     fun delTeacher(@PathVariable tNumber: String): String {
         var Id = TeacherService.findBytNumber(tNumber).id
         TeacherService.delTeacher(Id!!)
+//       关联删除tc信息
+        var error:String="succeed"
+        try {
+            TcService.findBytNumber(tNumber)
+        }catch (e:Exception){
+            error="error"
+        }
+        if(error=="succeed"){
+            var Id=TcService.findBytNumber(tNumber).id
+            TcService.delTc(Id!!)
+        }
         return "redirect:/admin/teacher"
     }
 
@@ -316,6 +366,37 @@ class adminController {
     fun delCourse(@PathVariable cNumber: String): String {
         var Id: Long? = CourseService.findBycNumber(cNumber).id
         CourseService.delCourse(Id!!)
+//        关联删除sc表
+        var error:String="succeed"
+        try {
+//            获取所有选课的学生
+            var ScList=ScService.findBycNumber(cNumber)
+        }catch (e:Exception){
+            error="error"
+        }
+        if (error=="succeed"){
+//            获取所有选课的学生
+            var ScList=ScService.findBycNumber(cNumber)
+//            循环删除相关信息
+            for (Sc in ScList){
+                var Id2=Sc.id
+                ScService.delSc(Id2!!)
+            }
+        }
+//        关联删除tc表
+        var error2:String="succeed"
+        try {
+//            获取授课信息
+            var TcList=TcService.findBycNumber(cNumber)
+        }catch (e:Exception){
+            //            获取授课信息
+            var TcList=TcService.findBycNumber(cNumber)
+//            循环删除
+            for(Tc in TcList){
+                var Id3=Tc.id
+                TcService.delTc(Id3!!)
+            }
+        }
         return "redirect:/admin/course"
     }
 
@@ -405,8 +486,10 @@ class adminController {
     //    删除
     @RequestMapping("admin/profession/del/{pNumber}", method = arrayOf(RequestMethod.GET))
     fun delProfession(@PathVariable pNumber: String): String {
+//        删除专业信息
         var Id = ProfessionService.findBypNumber(pNumber).id
         ProfessionService.delProfession(Id!!)
+
         return "redirect:/admin/profession"
     }
 
@@ -425,12 +508,4 @@ class adminController {
         return "Pcreate"
     }
 
-
-//    @RequestMapping("admin/course/create", method = arrayOf(RequestMethod.GET))
-//    fun insertCourseForm(map: ModelMap): String {
-//        var Course = course()
-//        map.addAttribute("course", Course)
-//        map.addAttribute("action", "create")
-//        return "Ccreate"
-//    }
 }

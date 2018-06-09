@@ -53,10 +53,29 @@ class scController {
     @RequestMapping("student/find/{sNumber}", method = arrayOf(RequestMethod.GET))
     fun gradeFind(@PathVariable sNumber: String, map: ModelMap): String {
         println(sNumber)
-        var Sc = ScService.findBysNumber(sNumber)
-        var Course: course = CourseService.findBycNumber(Sc.cNumber!!)
-        map.addAttribute("sc", Sc)
-        map.addAttribute("course", Course)
-        return "Tgrade"
+//        定义错误标记
+        var error: String = "succeed"
+        try {
+            var Sc = ScService.findBysNumber(sNumber)
+        } catch (e: Exception) {
+            error = "error"
+        }
+        if (error == "succeed") {
+//        获取学生课程信息（成绩在这张表里）
+            var Sc = ScService.findBysNumber(sNumber)
+            println(Sc)
+            if (Sc.cGrade.equals(null)){
+                Sc.cGrade="暂无成绩"
+            }
+            println(Sc)
+            map.addAttribute("sc", Sc)
+//        获取课程信息
+            var Course: course = CourseService.findBycNumber(Sc.cNumber!!)
+//        映射课程信息
+            map.addAttribute("course", Course)
+            return "Tgrade"
+        } else {
+            return "Gerror"
+        }
     }
 }

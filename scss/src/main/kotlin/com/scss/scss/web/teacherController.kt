@@ -27,36 +27,49 @@ class teacherController {
     fun Tlogin(@ModelAttribute Teacher: teacher, map: ModelMap, session: HttpSession): String {
 //        获取教工号
         var T_number: String = Teacher.tNumber!!
-//        查询对应教工号在数据库中储存的信息
-        println(Teacher)
-        var getteacher: teacher = TeacherService.findBytNumber(T_number)
-//        判断密码是否正确
-        if (getteacher.tPasswd == Teacher.tPasswd) {
-//            返回个人信息
-            map.addAttribute("teacher", TeacherService.findBytNumber(T_number))
-//            添加登录信息到session
-            session.setAttribute("Tlogin", T_number)
-            return "Tinfo"
-        } else {
-            return "redirect:/tlogin"
+//        定义错误标记
+        var error: String = "succeed"
+        try {
+            //        查询对应教工号在数据库中储存的信息
+            println(Teacher)
+            var getteacher: teacher = TeacherService.findBytNumber(T_number)
+        } catch (e: Exception) {
+            error = "error"
         }
+        if (error == "succeed") {
+//        查询对应教工号在数据库中储存的信息
+            println(Teacher)
+            var getteacher: teacher = TeacherService.findBytNumber(T_number)
+//        判断密码是否正确
+            if (getteacher.tPasswd == Teacher.tPasswd) {
+//            返回个人信息
+                map.addAttribute("teacher", TeacherService.findBytNumber(T_number))
+//            添加登录信息到session
+                session.setAttribute("Tlogin", T_number)
+                return "Tinfo"
+            } else {
+                return "TLerror"
+            }
+        } else {
+            return "TNotFind"
 
+        }
     }
 
     //    注册
     @RequestMapping("/teacher/create", method = arrayOf(RequestMethod.POST))
     fun insertTeacher(@ModelAttribute Teacher: teacher): String {
-        var error:String="error"
+        var error: String = "error"
         try {
             TeacherService.findBytNumber(Teacher.tNumber as String)
-        }catch (e:Exception){
+        } catch (e: Exception) {
             //    将教师信息插入教师表
             TeacherService.insertTeacher(Teacher)
-            error="succeed"
+            error = "succeed"
         }
-        if (error=="succeed"){
+        if (error == "succeed") {
             return "redirect:/tlogin"
-        }else{
+        } else {
             return "TCerror"
         }
 

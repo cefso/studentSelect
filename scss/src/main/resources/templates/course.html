@@ -32,6 +32,9 @@
         </tbody>
     </div>
 </table>
-推荐选择课程：<input type="text" id="student_number" name="cName" th:value="${course.cName}"/><br/>
+推荐选择课程：<span th:text="${course.cName}"/><br/>
+<a th:href="@{/student/info}">
+    <button type="button">返回</button>
+</a>
 </body>
 </html>
