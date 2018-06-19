@@ -1,33 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>学生信息修改</title>
+	<script>
+		function x(form){
+			if(form.student_name.value==""||form.student_number.value==""||form.student_age.value==""||form.student_tel.value==""||form.student_password.value==""){
+				alert("请输入信息");
+				return false;
+			}
+			return true;
+		}
+	</script>
 </head>
 <body>
+<br/>
+<br/>
+<div class="container" align="center">
+    <form th:action="@{/admin/student/{action}(action=${action})}" method="POST" onsubmit="return x(this)">
+        <table>
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="student_name">姓名:</label>
+                    </td>
+                    <td>
+                        <input type="text" class="rounded"id="student_name" name="sName" th:value="${student.sName}"/>
+                    </td>
+                </tr>
+            </div>
 
-<form th:action="@{/admin/student/{action}(action=${action})}" method="POST">
-    姓名：<input type="text" id="student_name" name="sName" th:value="${student.sName}"/><br/>
-    学号：<input type="text" id="student_number" name="sNumber" th:value="${student.sNumber}"/><br/>
-    性别：<br/>
-    <table>
-        <input type="radio" name="sSex" th:value="男"/>男
-        <input type="radio" name="sSex" th:value="女"/>女
-    </table>
-    年龄：<input type="text" id="user_age" name="sAge" th:value="${student.sAge}"/><br/>
-    专业：<br/>
-    <table>
-        <td th:each="profession:${professionList}">
-            <input type="radio" name="sProfession" th:value="${profession.pName}"/>
-            <span th:text="${profession.pName}"/>
-        </td>
-    </table>
-    电话：<input type="text" id="student_tel" name="sTelephone" th:value="${student.sTelephone}"/><br/>
-    密码：<input type='text' id="student_passward" name="sPasswd" th:value="${student.sPasswd}"/><br/>
-    <input type="submit" value="提交"/>
-    <a th:href="@{/admin/student}">
-        <button type="button">返回</button>
-    </a>
-</form>
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="student_number">学号:</label>
+                    </td>
+                    <td>
+                        <input type="text"class="rounded" id="student_number" name="sNumber" th:value="${student.sNumber}"/>
+                    </td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="user_age">年龄:</label>
+                    </td>
+                    <td>
+                        <input type="text"class="rounded" id="user_age" name="sAge" th:value="${student.sAge}"/>
+                    </td>
+                </tr>
+
+
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="sex">性别:</label>
+                    </td>
+                    <td>
+                        <table>
+                            <input type="radio" name="sSex" checked="checked" th:value="男"/>男
+                            <input type="radio" name="sSex" th:value="女"/>女
+                        </table>
+                    </td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="teacher_tel">专业:</label>
+                    </td>
+                    <td>
+                        <table>
+                            <td th:each="profession:${professionList}">
+                                <input type="radio" name="sProfession" th:value="${profession.pName}"/>
+                                <span th:text="${profession.pName}"/>
+                            </td>
+                        </table>
+
+                    </td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="student_tel">电话:</label>
+                    </td>
+                    <td>
+                        <input type="text" class="rounded"id="student_tel" name="sTelephone" th:value="${student.sTelephone}"/>
+                    </td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="teacher_tel">密码:</label>
+                    </td>
+                    <td>
+                        <input type='password' class="rounded"id="student_passward" name="sPasswd" th:value="${student.sPasswd}"/>
+                    </td>
+                </tr>
+            </div>
+        </table>
+        <br/>
+        <div class="container">
+            <button type="submit" class="btn btn-primary">提交</button>
+            &nbsp;&nbsp;&nbsp;
+            <a th:href="@{/admin/student}">
+                <button type="button" class="btn ">返回</button>
+            </a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

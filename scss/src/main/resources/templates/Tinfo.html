@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>教师首页</title>
 </head>
 <body>
-<table class="table table-hover table-condensed">
-    <div class="contentDiv">
-        <legend>
-            <strong>教师信息</strong>
-        </legend>
-        <thead>
+<div align="center" class="container">
+<h2 align=center>教师信息</h2>
+</br>
+<table class="table table-bordered table-hover table-condensed">
+        <thead class=" bg-primary text-white" align="center">
         <tr>
-            <td align="center">姓名</td>
-            <td align="center">教工号</td>
-            <td align="center">性别</td>
-            <td align="center">电话</td>
-            <td align="center">Email</td>
+            <th align="center">姓名</th>
+            <th align="center">教工号</th>
+            <th align="center">性别</th>
+            <th align="center">电话</th>
+            <th align="center">Email</th>
         </tr>
         </thead>
         <tbody>
@@ -28,19 +32,24 @@
             <td align="center" th:text="${teacher.tEmail}"></td>
         </tr>
         </tbody>
-    </div>
+  
 </table>
+  </div>
+  </br>
+  </br>
+<div align="center" class="form-group">
+
 <a th:href="@{/teacher/course}">
-    <button type="button">查询课程安排</button>
+    <button type="button"  class="btn btn-primary" >查询课程安排</button>
 </a>
-
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a th:href="@{/teacher/update}">
-    <button type="button">修改个人信息</button>
+    <button type="button" class="btn btn-primary">修改个人信息</button>
 </a>
-
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a th:href="@{/teacher/find}">
-    <button type="button">查看选课学生</button>
+    <button type="button" class="btn btn-primary">查看选课学生</button>
 </a>
-
+</div>
 </body>
 </html>

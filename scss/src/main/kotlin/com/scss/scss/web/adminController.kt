@@ -230,12 +230,22 @@ class adminController {
     @RequestMapping("/admin/teacher/course/{tNumber}", method = arrayOf(RequestMethod.GET))
     fun MTeacherCourse(@PathVariable tNumber: String, map: ModelMap, session: HttpSession): String {
 //        查找教师教授课程号
-        var cNumber = TcService.findBytNumber(tNumber).cNumber
-        println("cccccccccccccccccc")
-        println(cNumber)
-        var Course = CourseService.findBycNumber(cNumber!!)
+        var error: String = "succeed"
+        try {
+            //        查找教师教授课程号
+            var cNumber = TcService.findBytNumber(tNumber).cNumber
+        } catch (e: Exception) {
+            error = "error"
+        }
+        if (error == "succeed") {
+            //        查找教师教授课程号
+            var cNumber = TcService.findBytNumber(tNumber).cNumber
+            println("cccccccccccccccccc")
+            println(cNumber)
+            var Course = CourseService.findBycNumber(cNumber!!)
+            map.addAttribute("course", Course)
+        }
         session.setAttribute("A_tNumber", tNumber)
-        map.addAttribute("course", Course)
         return "ATcourse"
     }
 
@@ -275,6 +285,9 @@ class adminController {
     fun updateT(@PathVariable tNumber: String, map: ModelMap, session: HttpSession, @ModelAttribute Teacher: teacher): String {
         var Teacher: teacher
         var tNumber: String = tNumber
+        println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        println(tNumber)
+        println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         Teacher = TeacherService.findBytNumber(tNumber)
         session.setAttribute("A_tNumber", tNumber)
         map.addAttribute("teacher", Teacher)

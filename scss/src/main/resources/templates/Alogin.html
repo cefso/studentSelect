@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>管理员登录</title>
+	<script>
+	function x(form)
+{
+    if(form.anumber.value == ""||form.apassword.value=="")
+    {
+         alert("请输入信息");
+         return false;
+    }
+    return true;
+}
+</script>
 </head>
 <body>
-<form th:action="@{/alogin}" method="post">
-    账号：<input type="text" id="anumber" name="aNumber" th:value="${admin.aNumber}"/><br/>
-    密码：<input type="password" id="apassword" name="aPasswd" th:value="${admin.aPasswd}"/><br/>
-    <input class="btn btn-primary" type="submit" value="提交"/>
-    <a th:href="@{/login}"><button type="button" >返回</button></a>
-</form>
+<br/>
+<br/>
+<div align="center" class="container">
+    <form th:action="@{/alogin}" method="post" onsubmit="return x(this)">
+        <div class="form-group">
+            <label for="anumber"> 账号:</label>
+            <input type="text" class="rounded" placeholder="管理员账号" id="anumber" name="aNumber" th:value="${admin.aNumber}"/>
+        </div>
+        <div class="form-group">
+            <label for="apassword">密码:</label>
+            <input type="password"class="rounded" id="apassword" placeholder="请输入密码" name="aPasswd" th:value="${admin.aPasswd}"/>
+        </div>
+        <br/>
+        <div align="center" class="form-group">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-primary" type="submit"/>
+            提交</button>
+            &nbsp;&nbsp;
+            <a th:href="@{/login}">
+                <button class="btn " type="button">返回</button>
+            </a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

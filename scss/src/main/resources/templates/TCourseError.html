@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>课程无安排</title>
 </head>
 <body>
-课程尚未安排
-<td align="center"><a th:href="@{/teacher/info}">
-    <button type="button">返回</button>
-</a></td>
+<div align="center">
+    <h4 >课程尚未安排，请返回</h4>
+</div>
+<hr/>
+<div align="center" class="form-group">
+    <td>
+        <a th:href="@{/teacher/info}">
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" style="font-size:0.8em; width: 10%;height: 20%;" class="btn btn-primary">返回</button>
+        </a>
+    </td>
+</div>
 </body>
 </html>

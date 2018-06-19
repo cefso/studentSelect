@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>课程信息修改</title>
 </head>
 <body>
-<form th:action="@{/admin/course/{action}(action=${action})}" method="POST">
-    姓名：<input type="text" id="course_name" name="cName" th:value="${course.cName}"/><br/>
-    学号：<input type="text" id="course_number" name="cNumber" th:value="${course.cNumber}"/><br/>
-    电话：<input type="text" id="course_time" name="cTime" th:value="${course.cTime}"/><br/>
-    密码：<input type='text' id="course_score" name="cScore" th:value="${course.cScore}"/><br/>
-    <input  type="submit" value="提交"/>
-    <a th:href="@{/admin/course}"><button type="button">返回</button></a>
-</form>
+</br>
+</br>
+<div align="center" class="container">
+<script>
+function x(form)
+{
+    if(form.course_name.value == ""||form.course_number.value == ""||form.course_time.value == ""||form.course_score.value == "")
+    {
+         alert("请输入信息");
+         return false;
+    }
+    return true;
+}
+</script>
+
+    <form th:action="@{/admin/course/{action}(action=${action})}" method="POST" onsubmit="return x(this)">
+        <table>
+            <div class="form-group">
+                <label for="course_name">姓名:</label>
+                <input type="text"class="rounded" id="course_name" name="cName" th:value="${course.cName}"/>
+            </div>
+            <div class="form-group">
+                <label for="course_number">学号:</label>
+                <input type="text" class="rounded"id="course_number" name="cNumber" th:value="${course.cNumber}"/>
+            </div>
+            <div class="form-group">
+                <label for="course_time">电话:</label>
+                <input type="text"class="rounded" id="course_time" name="cTime" th:value="${course.cTime}"/>
+            </div>
+            <div class="form-group">
+                <label for="course_score">密码:</label>
+                <input type='text' class="rounded"id="course_score" name="cScore" th:value="${course.cScore}"/>
+            </div>
+        </table>
+
+        <div align="center" class="form-group">
+            <button type="submit" class="btn btn-primary ">提交</button>
+            &nbsp;&nbsp;
+            <a th:href="@{/admin/course}">
+                <button type="button" class="btn ">返回</button>
+            </a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

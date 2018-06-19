@@ -1,16 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/admin/course/{action}(action=${action})}" method="POST">
-    课程名称：<input type="text" id="course_name" name="cName" th:value="${course.cName}"/><br/>
-    课程号：<input type="text" id="course_number" name="cNumber" th:value="${course.cNumber}"/><br/>
-    学时：<input type="text" id="course_time" name="cTime" th:value="${course.cTime}"/><br/>
-    学分：<input type="text" id="course_score" name="cScore" th:value="${course.cScore}"/><br/>
-    <input  type="submit" value="提交"/><br/>
-</form>
+<div align="center" class="container">
+    <form th:action="@{/admin/course/{action}(action=${action})}" method="POST">
+        <table>
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="course_name"> 课程名称:</label>
+                    </td>
+                    <td>
+                        <input type="text"class="rounded" id="course_name" name="cName" th:value="${course.cName}"/>
+                    </td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="course_name"> 课&nbsp;&nbsp;程&nbsp;&nbsp;号:</label>
+                    </td>
+                    <td>
+                        <input type="text"class="rounded" id="course_number" name="cNumber" th:value="${course.cNumber}"/>
+                    </td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="course_name"> 学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时:</label>
+                    </td>
+                    <td>
+                        <input type="text"class="rounded" id="course_time" name="cTime" th:value="${course.cTime}"/>
+                    </td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <label for="course_name"> 学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分:</label>
+                    </td>
+                    <td>
+                        <input type="text" class="rounded" id="course_score" name="cScore" th:value="${course.cScore}"/>
+                    </td>
+                </tr>
+            </div>
+        </table>
+
+
+        <br/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">提交</button>
+            &nbsp;&nbsp;&nbsp;
+            <a th:href="@{/admin/course}">
+                <button type="button" class="btn ">返回</button>
+            </a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

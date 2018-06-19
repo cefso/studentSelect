@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>尚未选课</title>
 </head>
 <body>
-尚未选课
-<a th:href="@{/student/info}">
-    <button type="button">返回</button>
-</a>
+
+<h2 align="center">尚未选课</h2>
+<hr/>
+<br/>
+<div align=center class="form-group">
+    <a th:href="@{/student/info}">
+        <button type="button" class="btn">返回</button>
+    </a>
+</div>
 </body>
 </html>

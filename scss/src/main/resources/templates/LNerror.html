@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>账号不存在</title>
 </head>
 <body>
-账号不存在
-<td align="center"><a th:href="@{/login}">
-    <button type="button">返回</button>
-</a></td>
-<td align="center"><a th:href="@{/student/create}">
-    <button type="button">注册账号</button>
-</a></td>
+<h2 align="center">账号不存在</h2>
+<hr/>
+<br/>
+<div align=center class="form-group">
+    <a th:href="@{/student/create}">
+        <button type="button" class="btn btn-primary">注册账号</button>
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a th:href="@{/login}">
+        <button type="button" class="btn">返回</button>
+    </a>
+</div>
 </body>
 </html>

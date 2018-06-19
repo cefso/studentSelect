@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <title>Title</title>
 </head>
 <body>
-<form>
-    <table >
-        <tr>
-            <td align="center">姓名</td>
-            <td align="center">教工号</td>
-            <td align="center">性别</td>
-            <td align="center">电话</td>
-            <td align="center">Email</td>
-            <td align="center">授课管理</td>
-            <td align="center">信息管理</td>
-            <td align="center">删除</td>
-        </tr>
-        <tr th:each="teacher:${teacherList}" method="POST">
-            <td align="center" th:text="${teacher.tName}"></td>
-            <td align="center" th:text="${teacher.tNumber}"></td>
-            <td align="center" th:text="${teacher.tSex}"></td>
-            <td align="center" th:text="${teacher.tTelephone}"></td>
-            <td align="center" th:text="${teacher.tEmail}"></td>
-            <td><a th:href="@{/admin/teacher/course/{tNumber}(tNumber=${teacher.tNumber})}">
-                <button type="button">管理</button>
-            </a></td>
-            <td><a th:href="@{/admin/teacher/update/{tNumber}(tNumber=${teacher.tNumber})}">
-                <button type="button">管理</button>
-            </a></td>
-            <td align="center"><a th:href="@{/admin/teacher/del/{tNumber}(tNumber=${teacher.tNumber})}">
-                <button type="button">删除</button>
-            </a></td>
-        </tr>
-    </table>
-    <a th:href="@{/admin/info}"><button type="button">返回</button></a>
+<div class="container" align="center">
+    <br/>
+    <div align="center" class="form-group">
 
-</form>
+        <table class="table">
+            <thead class=" bg-primary text-white" align="center">
+            <tr>
+                <th align="center">姓名</th>
+                <th align="center">教工号</th>
+                <th align="center">性别</th>
+                <th align="center">电话</th>
+                <th align="center">Email</th>
+                <th align="center">授课管理</th>
+                <th align="center">信息管理</th>
+                <th align="center">删除</th>
+            </tr>
+            </thead>
+            <tr align="center" th:each="teacher:${teacherList}" method="POST">
+                <td align="center" th:text="${teacher.tName}"></td>
+                <td align="center" th:text="${teacher.tNumber}"></td>
+                <td align="center" th:text="${teacher.tSex}"></td>
+                <td align="center" th:text="${teacher.tTelephone}"></td>
+                <td align="center" th:text="${teacher.tEmail}"></td>
+                <td><a th:href="@{/admin/teacher/course/{tNumber}(tNumber=${teacher.tNumber})}">
+                    <button type="button" class="RoleOfdelete btn btn-primary  btn-sm">管理</button>
+                </a></td>
+                <td><a th:href="@{/admin/teacher/update/{tNumber}(tNumber=${teacher.tNumber})}">
+                    <button type="button" class="RoleOfdelete btn btn-primary  btn-sm">管理</button>
+                </a></td>
+                <td align="center"><a th:href="@{/admin/teacher/del/{tNumber}(tNumber=${teacher.tNumber})}">
+                    <button type="button" class="btn-danger rounded">删除</button>
+                </a></td>
+            </tr>
+        </table>
+    </div>
+    <div align="center" class="form-group">
+        <br/>
+        <a th:href="@{/admin/info}">
+            <button type="button" class="btn">返回</button>
+        </a>
+    </div>
+</div>
 </body>
 </html>

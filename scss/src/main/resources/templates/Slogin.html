@@ -1,23 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>登录</title>
+    <style>
+        #main {
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            left: 50%;
+            top: 30%;
+            margin-left: -200px;
+            margin-top: -100px;
+        }
+    </style>
 </head>
-<body>
-<form th:action="@{/login}" method="post">
-    学号：<input type="text" id="stnumber" name="sNumber" th:value="${student.sNumber}"/><br/>
-    密码：<input type="password" id="stpassword" name="sPasswd" th:value="${student.sPasswd}"/><br/>
-    <input type="submit" value="提交"/>
-</form>
-<a th:href="@{/student/create}">
-    <button>创建用户</button>
-</a><br/>
-<a th:href="@{/tlogin}">
-    <button type="button">教师入口</button>
-</a>
-<a th:href="@{/alogin}">
-    <button type="button">管理员入口</button>
-</a>
+<body background="Background.jpg">
+<div id="main" align="center" class="container center-block">
+    <script>
+        function x(form) {
+            if (form.snumber.value == "" || form.pwd.value == "") {
+                alert("请输全信息");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <br/>
+    <form th:action="@{/login}" method="post" action="ok.html" onsubmit="return x(this)">
+        <div class="form-group">
+            <label for="snumber">学号：</label>
+            <input type="text" class="rounded" id="snumber" placeholder="请输入11位学号" name="sNumber"
+                   th:value="${student.sNumber}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="pwd">密码：</label>
+            <a href="#" data-toggle="tooltip" data-placement="top" title="请使用字母符号加数字的复杂密码!">
+                <input type="password" class="rounded" id="pwd" placeholder="请输入密码" name="sPasswd"
+                       th:value="${student.sPasswd}"/></a>
+        </div>
+
+        <br/>
+        <div class="container">
+
+            <button type="submit" class="btn btn-primary" value="提交"/>
+            登录</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/student/create}">
+                <button type="button" class="btn btn-primary">注册</button>
+            </a>
+        </div>
+        <div class="container">
+            <!-- <div class="btn-group"> -->
+            <br/>
+            <a th:href="@{/tlogin}">
+                <button type="button" class="btn btn-light">教师入口</button>
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            <a th:href="@{/alogin}">
+                <button type="button" class="btn btn-light">管理员入口</button>
+            </a>
+            <!-- </div> -->
+        </div>
+    </form>
+</div>
 </body>
 </html>

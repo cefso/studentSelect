@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <title>Title</title>
 </head>
 <body>
-<table>
-    <div>
-        <legend>
-            <strong>课程列表</strong>
-        </legend>
-        <thead>
-        <tr>
-            <td align="center">课程号</td>
-            <td align="center">课程名</td>
-            <td align="center">学时</td>
-            <td align="center">学分</td>
-            <td align="center">选择</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="course:${courseList}">
-            <td align="center" th:text="${course.cNumber}"></td>
-            <td align="center" th:text="${course.cName}"></td>
-            <td align="center" th:text="${course.cTime}"></td>
-            <td align="center" th:text="${course.cScore}"></td>
-            <td align="center"><a th:href="@{/admin/student/course/select/{cNumber}(cNumber=${course.cNumber})}">
-                <button type="button">选择</button>
-            </a></td>
-        </tr>
-        </tbody>
+<br/>
+<div align="center" class="container">
+    <h2>课程列表</h2>
+    <br/>
+    <div class="container" >
+        <table class="table">
+            <thead class=" bg-primary text-white" align="center">
+            <tr >
+                <th align="center">课程号</th>
+                <th align="center">课程名</th>
+                <th align="center">学时</th>
+                <th align="center">学分</th>
+                <th align="center">选择</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="course:${courseList}">
+                <td align="center" th:text="${course.cNumber}"></td>
+                <td align="center" th:text="${course.cName}"></td>
+                <td align="center" th:text="${course.cTime}"></td>
+                <td align="center" th:text="${course.cScore}"></td>
+                <td align="center"><a th:href="@{/admin/student/course/select/{cNumber}(cNumber=${course.cNumber})}">
+                    <button type="button" class="btn-primary">选择</button>
+                </a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</table>
+    <div align="center" class="container">
+        <a th:href="@{/admin/student}">
+            <button type="button" class="btn">返回</button>
+        </a>
+    </div>
+</div>
 </body>
 </html>

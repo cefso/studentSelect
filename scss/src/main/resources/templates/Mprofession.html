@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <title>Title</title>
 </head>
 <body>
-<table>
-    <div>
-        <legend>
-            <strong>专业列表</strong>
-        </legend>
-        <thead>
-        <tr>
-            <td align="center">专业号</td>
-            <td align="center">专业名</td>
-            <td align="center">推荐课程</td>
-            <td align="center">查看推荐课程信息</td>
-            <td align="center">信息修改</td>
-            <td align="center">删除</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="profession:${professionList}">
-            <td align="center" th:text="${profession.pNumber}"></td>
-            <td align="center" th:text="${profession.pName}"></td>
-            <td align="center" th:text="${profession.rNumber}"></td>
-            <td align="center"><a th:href="@{/admin/profession/r/{pNumber}(pNumber=${profession.pNumber})}">
-                <button type="button"> 查看</button>
-            </a></td>
-            <td align="center"><a th:href="@{/admin/profession/update/{pNumber}(pNumber=${profession.pNumber})}">
-                <button type="button">修改</button>
-            </a></td>
-            <td align="center"><a th:href="@{/admin/profession/del/{pNumber}(pNumber=${profession.pNumber})}">
-                <button type="button">修改</button>
-            </a></td>
-            <!--<td align="center"><a th:href="@{/admin/course/del/{cNumber}(cNumber=${course.cNumber})}">-->
+
+<div class="container" align="center">
+    <br/>
+    <h2 align="center">专业列表</h2>
+    <div align="center" class="form-group">
+        <table class="table">
+            <thead class=" bg-primary text-white" align="center">
+            <tr>
+                <th align="center">专业号</th>
+                <th align="center">专业名</th>
+                <th align="center">推荐课程</th>
+                <th align="center">查看推荐课程信息</th>
+                <th align="center">信息修改</th>
+                <th align="center">删除</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="profession:${professionList}">
+                <td align="center" th:text="${profession.pNumber}"></td>
+                <td align="center" th:text="${profession.pName}"></td>
+                <td align="center" th:text="${profession.rNumber}"></td>
+                <td align="center"><a th:href="@{/admin/profession/r/{pNumber}(pNumber=${profession.pNumber})}">
+                    <button type="button" class="RoleOfdelete btn btn-primary  btn-sm">管理</button>
+                </a></td>
+                <td align="center"><a th:href="@{/admin/profession/update/{pNumber}(pNumber=${profession.pNumber})}">
+                    <button type="button" class="RoleOfdelete btn btn-primary  btn-sm">管理</button>
+                </a></td>
+                <td align="center"><a th:href="@{/admin/profession/del/{pNumber}(pNumber=${profession.pNumber})}">
+                    <button type="button" class="btn-danger rounded">删除</button>
+                </a></td>
+                <!--<td align="center"><a th:href="@{/admin/course/del/{cNumber}(cNumber=${course.cNumber})}">-->
                 <!--<button type="button">删除</button>-->
-            <!--</a></td>-->
-        </tr>
-        </tbody>
+                <!--</a></td>-->
+            </tr>
+            </tbody>
+
+        </table>
     </div>
-</table>
-<td align="center"><a th:href="@{/admin/profession/create}">
-    <button type="button">添加</button>
-</a></td>
+    <br/>
+    <div align="center" class="form-group">
+
+        <a th:href="@{/admin/profession/create}">
+            <button type="button" class="btn btn-primary">添加</button>
+        </a>
+        <a th:href="@{/admin/info}">
+            <button type="button" class="btn">返回</button>
+        </a>
+    </div>
+</div>
 </body>
 </html>

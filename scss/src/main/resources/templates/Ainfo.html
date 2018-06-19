@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>首页</title>
 </head>
 <body>
-<table class="table table-hover table-condensed">
-    <div class="contentDiv">
-        <legend>
-            <strong>管理员信息</strong>
-        </legend>
-        <thead>
-        <tr>
-            <td align="center">姓名</td>
-            <td align="center">账号</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="admin:${admin}">
-            <td align="center" th:text="${admin.aName}"></td>
-            <td align="center" th:text="${admin.aNumber}"></td>
-        </tr>
-        </tbody>
-    </div>
-</table>
-<a th:href="@{/admin/student}"><button type="button">学生管理</button></a>
-<a th:href="@{/admin/teacher}"><button type="button">教师管理</button></a>
-<a th:href="@{/admin/course}"><button type="button">课程管理</button></a>
-<a th:href="@{/admin/profession}"><button type="button">专业管理</button></a>
+<div align="center" class="container">
+    <div class="container">
+        <table class="table  table-bordered">
 
+            <h2 align="center">管理员信息</h2>
+            <br/>
+            <thead class=" bg-primary text-white" align="center">
+            <tr>
+                <th align="center">姓名</th>
+                <th align="center">账号</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="admin:${admin}">
+                <td align="center" th:text="${admin.aName}"></td>
+                <td align="center" th:text="${admin.aNumber}"></td>
+            </tr>
+            </tbody>
+
+        </table>
+        <br/>
+        <br/>
+    </div>
+    <div align="center" class="form-group">
+        <a th:href="@{/admin/student}">
+            <button type="button" class="btn btn-primary">学生管理</button>
+        </a>
+        &nbsp;&nbsp;
+        <a th:href="@{/admin/teacher}">
+            <button type="button" class="btn btn-primary">教师管理</button>
+        </a>
+        &nbsp;&nbsp;
+        <a th:href="@{/admin/course}">
+            <button type="button" class="btn btn-primary">课程管理</button>
+        </a>
+        &nbsp;&nbsp;
+        <a th:href="@{/admin/profession}">
+            <button type="button" class="btn btn-primary">专业管理</button>
+        </a>
+    </div>
+</div>
 <!--<a th:href="@{/student/find/{sNumber}(sNumber=${student.sNumber})}" role="button">成绩查询</a>-->
 </body>
 </html>
